@@ -1,42 +1,73 @@
-// Filename: src/app/page.client.js
-
 'use client'
 
-import Head from 'next/head';
-import React, { useState } from 'react';
+// Import necessary hooks and Web3
+import React, { useState, useEffect } from 'react';
+import Web3 from 'web3';
 
-export default function Home() {
-  const [tasks, setTasks] = useState(['Example task']);
-  const [input, setInput] = useState('');
+// Define your main page component
+function HomePage() {
+    const [web3, setWeb3] = useState(null);
+    const [accounts, setAccounts] = useState([]);
+    const [tasks, setTasks] = useState([]);
+    const [input, setInput] = useState('');
 
-  const handleInputChange = (event) => setInput(event.target.value);
+    // Initialize web3 and fetch accounts
+    useEffect(() => {
+        async function loadWeb3() {
+            if (window.ethereum) {
+                const web3Instance = new Web3(window.ethereum);
+                setWeb3(web3Instance);
+                const acc = await web3Instance.eth.requestAccounts();
+                setAccounts(acc);
+            } else {
+                alert("Please install MetaMask to use this app.");
+            }
+        }
+        loadWeb3();
+    }, []);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (input.trim() !== '') {
-      setTasks(prevTasks => [...prevTasks, input.trim()]);
-      setInput('');
-    }
-  };
+    // Function to handle new task addition
+    const addTask = async () => {
+        if (!input.trim()) {
+            alert('Please enter a valid task.');
+            return;
+        }
+        // Assume todoContract is already defined
+        try {
+            await todoContract.methods.addTask(input).send({ from: accounts[0] });
+            setInput('');
+            loadTasks(); // Optionally refresh the task list
+        } catch (error) {
+            console.error('Error adding task:', error);
+        }
+    };
 
-  return (
-    <div>
-      <Head>
-        <title>Checklist dApp</title>
-        <meta name="description" content="Decentralized Task Manager" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    // Function to load tasks from the smart contract
+    const loadTasks = async () => {
+        // Implementation depends on your smart contract methods
+    };
 
-      <main>
-        <h1>Welcome to your dApp Checklist</h1>
+    // Input change handler
+    const handleInputChange = (event) => setInput(event.target.value);
+
+    // Render your component
+    return (
         <div>
-          <input type="text" value={input} onChange={handleInputChange} placeholder="Enter a new task" />
-          <button onClick={handleSubmit}>Add Task</button>
+            <h1>Welcome to your dApp Checklist</h1>
+            <input
+                type="text"
+                value={input}
+                onChange={handleInputChange}
+                placeholder="Enter a new task"
+            />
+            <button onClick={addTask}>Add Task</button>
+            <ul>
+                {tasks.map((task, index) => (
+                    <li key={index}>{task}</li> // Update to display task details appropriately
+                ))}
+            </ul>
         </div>
-        <ul>
-          {tasks.map((task, index) => <li key={index}>{task}</li>)}
-        </ul>
-      </main>
-    </div>
-  );
+    );
 }
+
+export default HomePage;
