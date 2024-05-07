@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ethereum To-Do List (eth-todo-list)
 
-## Getting Started
+Welcome to **eth-todo-list**, a decentralized application (dApp) built with React and Next.js. This project demonstrates your proficiency as a developer in blockchain technology and a modern SaaS tech stack.
 
-First, run the development server:
+## Table of Contents
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Setup Instructions](#setup-instructions)
+- [Screenshots](#screenshots)
+- [Contact](#contact)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Overview
+eth-todo-list is a decentralized task manager that interacts with an Ethereum smart contract for managing tasks. It is designed to showcase your skills with serverless web apps and blockchain integration, using cutting-edge tools like Next.js and Tailwind CSS.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### How it Works
+- Users can add new tasks, mark them as complete, and interact with the task manager.
+- Task data is stored securely on the blockchain using Ethereum smart contracts.
+- The dApp integrates with MetaMask to authenticate users and facilitate interaction with the blockchain.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Tech Stack
+### Front-End
+- **React.js**: JavaScript framework for building interactive UIs.
+- **Next.js**: Enhances React with server-side rendering and static site generation.
+- **Tailwind CSS**: Utility-first CSS framework.
+- **DaisyUI**: Tailwind-based component library for ready-made UI elements.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Blockchain
+- **Solidity**: Ethereum smart contract programming language.
+- **Truffle Framework**: Suite for developing and testing smart contracts.
+- **Ganache**: Personal blockchain for local development.
+- **Sepolia Testnet**: Ethereum testnet to test smart contracts without real ETH.
 
-## Learn More
+### Deployment & Dev Tools
+- **Vercel**: Seamless deployment platform for Next.js.
+- **MetaMask**: Browser extension for Ethereum wallet and blockchain authentication.
+- **Web3.js**: JavaScript API to interact with the Ethereum blockchain.
 
-To learn more about Next.js, take a look at the following resources:
+## Features
+- **Add, Update & Remove Tasks**: Allows users to manage tasks securely using Ethereum smart contracts.
+- **Blockchain Integration**: All tasks are stored securely on the blockchain.
+- **Serverless**: Next.js API routes for serverless functions.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Setup Instructions
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mrmartin1998/eth-todo-list.git
+   cd eth-todo-list
+   npm install
+   npm run dev
